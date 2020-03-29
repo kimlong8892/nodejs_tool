@@ -44,6 +44,8 @@ const homeRouter = require('./routes/index');
 app.use('/home', homeRouter);
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
+const chatlogRouter = require('./routes/chatlog');
+app.use('/chatlog', chatlogRouter);
 app.get('/', function(req, res){
     res.redirect('/home');
 });
