@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="<%= baseURL %>">
+            <img src="<%= baseURL %>/images/icon.png" width="32px">
+        </a>
+        <a class="navbar-brand" href="<%= baseURL %>">Đông Lào</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+            <a class="nav-link" href="<%= baseURL %>">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown flex-row-reverse">
+                <% if(user) { %>
+                    <a href="#" class="nav-link dropdown-toggle no-arrow" data-toggle="dropdown">
+                        <!-- <span class="mr-2 d-none d-lg-inline text-light medium" id="header-user-name">Test</span> -->
+                        <i class="fas fa-user"></i><span class="pl-1"><%= user.user_name %></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow">
+                        <a href="<%= baseURL %>/user/logout" class="dropdown-item">Đăng xuất</a>
+                        <!-- <div class="dropdown-divider"></div> -->
+                    </div>
+                <% } else { %>
+                    <a href="#" class="nav-link dropdown-toggle no-arrow" data-toggle="dropdown">
+                        <!-- <span class="mr-2 d-none d-lg-inline text-light medium" id="header-user-name">Test</span> -->
+                        <i class="fas fa-user"></i><span class="pl-1">Đăng nhập hoặc đăng ký</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow">
+                        <a href="<%= baseURL %>/user/login" class="dropdown-item">Đăng nhập</a>
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <a href="<%= baseURL %>/user/reg" class="dropdown-item">Đăng ký</a>
+                    </div>
+                <% } %>
+            </li>
+        </ul>
+    </div>
+</nav>

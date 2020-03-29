@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <% include include/head %>
+    <title>Đăng nhập</title>
+</head>
+<body>
+    <% include include/header %>
+    <section class="container p-3">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-center">Đăng nhập</h3>
+                <% if(locals.error) { %>
+                    <script>
+                        $(document).ready(function(){
+                            $("#btn-login").prop('disabled', true);
+                            var time_error = $("#time-error").html();
+                            const IntervalError = setInterval(() => {
+                                time_error--;
+                                if(time_error == 0){
+                                    clearInterval(IntervalError);
+                                    $("#error-login").remove();
+                                }
+                                $("#time-error").html(time_error);
+                            }, 1000);
+                            setTimeout(() => {
+                                $("#btn-login").prop('disabled', false);
+                            }, 5000);
+                        });
+                    </script>
+                    <p class="alert alert-danger text-center" id="error-login"><%= error %><span id="time-error">5</span>s</p>
+                <% } %>
+                <form action="<%= baseURL %>/user/login" class="form" method="POST" autocomplete="off">
+                    <div class="form-group">
+                        <label for="">Email:</label>
+                        <input type="text" placeholder="Nhập email..." class="form-control" name="userEmail" id="userEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mật khẩu:</label>
+                        <input type="password" placeholder="Nhập mật khẩu" class="form-control" name="userPass" id="userPass">
+                    </div>
+                    <span>Bạn chưa có tài khoản hãy </span><a href="<%= baseURL %>/user/reg">Đăng ký</a>
+                    <div class = "float-right">
+                        <a href="#">Quên mật khẩu?</a>
+                        <button class="btn btn-primary" name="btn-login" id="btn-login">Đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <% include include/footer %>
+</body>
+</html>

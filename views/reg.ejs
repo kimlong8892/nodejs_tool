@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <% include include/head %>
+    <title>Đăng ký</title>
+</head>
+<body>
+    <% include include/header %>
+    <section class="container p-3">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-center">Đăng ký tài khoản</h3>
+                <% if(locals.success) { %>
+                    <p class="alert alert-success text-center"><%= success %></p>
+                <% } %>
+                <% if(locals.error) { %>
+                    <p class="alert alert-danger text-center"><%= error %></p>
+                <% } %>
+                <form action="<%= baseURL %>/user/reg" class="form" method="POST" autocomplete="off">
+                    <div class="form-group">
+                        <label for="">Biệt danh:</label>
+                        <input type="text" placeholder="Nhập biệt danh..." class="form-control" name="userName" id="userName">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email:</label>
+                        <input type="text" placeholder="Nhập email..." class="form-control" name="userEmail" id="userEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mật khẩu:</label>
+                        <input type="password" placeholder="Nhập mật khẩu" class="form-control" name="userPass" id="userPass">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nhập lại mật khẩu:</label>
+                        <input type="password" placeholder="Nhập lại mật khẩu" class="form-control" name="reuserPass" id="reuserPass">
+                    </div>
+                    <span>Bạn đã có tài khoản hãy </span><a href="<%= baseURL %>/user/login">Đăng nhập</a>
+                    <div class="float-right">
+                        <a href="#">Quên mật khẩu?</a>
+                        <button class = "btn btn-primary" name = "btn-reg" id="btn-reg">Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <% include include/footer %>
+</body>
+</html>

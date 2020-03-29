@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: gray;
+}
+nav.top-menu{
+    background: blue;
+}
+nav.top-menu ul{
+    list-style: none;
+    overflow: auto;
+}
+nav.top-menu ul li{
+    float: left;
+    padding: 10px;
+}
+nav.top-menu ul li a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+nav.top-menu ul li a:hover{
+    color: blue;
+}
+nav.top-menu .log-reg{
+    text-align: right;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+nav.top-menu .log-reg a{
+    padding: 0 10px;
+}
+
+
+/* footer */
+footer .copy-right-text{
+    text-align: center;
+}
+/* end footer */
