@@ -1,21 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <% include include/head %>
+    <%- include('include/head') -%>
     <title>Trang chủ</title>
     <script src="<%= baseURL %>/js/index.js"></script>
-    <% if(user) { %>
-        <script>
-            var user = null;
-            user.user_name = '<%= user.user_name %>';
-        </script>
-    <% } %>
 </head>
 <body>
-    <% include include/header %>
+    <%- include('include/header') -%>
     <section class="container p-3">
         <div class="row">
-            <div class="col-md-9 col-9" style="background: gainsboro; height: 400px; overflow: auto;">
+            <div class="col-md-9 col-9" style="background: gainsboro; height: 400px; overflow: auto;" id="chatlog">
                 <div class="row p-1">
                     <div class="col-md-1 col-2">
                         <div class="text-center">
@@ -38,9 +32,6 @@
                         </div>
                     </div>
                     <div class="col-md-11 col-10 card p-3" style="border-radius: 10px;">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum veritatis voluptatibus culpa, magnam ea tenetur laborum. Dolores qui mollitia nobis porro doloribus nemo iure eligendi adipisci blanditiis? Culpa, nesciunt asperiores.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus, dolorum assumenda. Harum ipsum a atque fugiat pariatur repudiandae quam voluptates maxime optio alias. Cupiditate libero reprehenderit repellat voluptatum quaerat doloribus?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet id eum, molestiae pariatur commodi inventore. Enim architecto odit voluptas consectetur sequi porro explicabo odio, neque pariatur deserunt error optio ex.
                         <p class="p-0 m-0 text-right"><small>11 mins ago</small></p>
                     </div>
                 </div>            
@@ -53,11 +44,11 @@
             <div class="col-md-10 col-9 p-0">
                 <input type="text" placeholder="Nhập tin nhắn..." class="form-control name="txtMess" id="txtMess">
             </div>
-            <div class="col-md-2 col-3 p-0">
+            <div class="col-md-2 col-3 p-0">    
                 <button class="btn btn-primary w-100" name="btn-send" id="btn-send">Gửi</button>
             </div>
         </div>
     </section>
-    <% include include/footer %>
+    <%- include('include/footer') -%>
 </body>
 </html>
