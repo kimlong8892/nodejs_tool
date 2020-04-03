@@ -45,4 +45,18 @@ userController.logout = function(req, res){
     req.session.destroy();
     res.redirect("/home");
 }
+// profile
+userController.showProfile = function(req, res){
+    let id = req.params.user_id;
+    userModel.getById(id).then(function(data){
+        let my_profile = false;
+        if(req.session.user)
+            if(id == req.session.user.user_id)
+                my_profile = true;
+        res.render("profile", {user: data[0][0], my_profile: my_profile});
+    });
+};
+userController.avatarPost = function(req, res){
+    
+};
 module.exports = userController;

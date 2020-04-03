@@ -7,12 +7,12 @@
 <script src="<%= baseURL %>/bootstrap/js/bootstrap.js"></script>
 <link rel="shortcut icon" href="<%= baseURL %>/images/icon.png" type="image/x-icon">
 <link rel="stylesheet" href="<%= baseURL %>/font-awesome/css/all.css">
-<script src="/socket.io/socket.io.js"></script>
+<script src="<%= baseURL %>/socket.io/socket.io.js"></script>
+<% if(user) { %>
+    <script>
+        var user_id = '<%= user.user_id %>';
+    </script>
+<% } %>
 <script>
   var socket = io();
 </script>
-<style>
-    body{
-      background: black;
-    }
-</style>

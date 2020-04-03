@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('include/head') -%>
+    <title><%= user.user_name %> - profile</title>
+</head>
+<body>
+    <%- include('include/header') -%>
+    <section class="container p-3">
+        <div class="row">
+            <div class="card col-md-12 text-center">
+                <img style="margin: 0 auto; width: 256px;" class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png">
+                <% if(my_profile) { %>
+                    <form action="<%= baseURL %>/profile/upload-avatar" method="post" enctype="multipart/form-data">
+                        <input type="file" name="user_avatar" id="user_avatar">
+                    </form>
+                <% } %>
+                <div class="card-body">
+                    <h4 class="card-title"><%= user.user_name %></h4>
+                    <p class="card-text">
+                        <span class="text-primary">Email: </span><span><%= user.user_email %></span>
+                    </p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('include/footer') -%>
+</body>
+</html>

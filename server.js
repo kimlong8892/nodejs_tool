@@ -8,7 +8,7 @@ app.use(express.static("./public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
 // use template
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");2
 app.set("views", "./views");
 // set folder pulic
 app.use(express.static("./public"));
@@ -49,12 +49,30 @@ app.use('/chatlog', chatlogRouter);
 app.get('/', function(req, res){
     res.redirect('/home');
 });
+app.get('/*', function(req, res){
+    res.render('404');
+});
 // socket io
+var user_online = [];
 io.on('connect', function(socket){
   socket.on('client-send-mess', function(data){
-      io.sockets.emit('server-send-mess', {mess: data.mess, user: socket.handshake.session.user});
+      io.sockets.emit('server-send-mess', {mess: data.mess, user: socket.handshake.session.user});  
   });
+  if(socket.handshake.session.user != undefined){
+    let user = socket.handshake.session.user;
+    user.socket_id = socket.id;
+    user_online.push(user);
+    console.log(user_online);
+  }
+  io.sockets.emit('server-send-list-user-online', {list_user: user_online});
   socket.on('disconnect', function(){
+    if(socket.handshake.session.user != undefined){
+      for(i = 0; i < user_online.length; ++i){
+        if(user_online[i].socket_id == socket.id){
+          user_online.splice(i, 1);
+        }
+      }
+    }
     console.log("user disconnect !!!");
   });
 });

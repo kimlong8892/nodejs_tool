@@ -3,6 +3,7 @@
 <head>
     <%- include('include/head') -%>
     <title>Trang chủ</title>
+    <script src="<%= baseURL %>/js/chat.js"></script>
     <script src="<%= baseURL %>/js/index.js"></script>
 </head>
 <body>
@@ -26,7 +27,10 @@
                 </div>        -->
             </div>
             <div class="col-md-3 col-3">
-                <h1 style="word-break: break-all;">adksfasjkldfjkdsajkfjk</h1>
+                <h3 class="text-center">User Online</h3>
+                <ul class="list-group" style="height: 360px; overflow: auto;" id="list-user-online">
+                    <!-- <li class="list-group-item">Cras justo odio</li> -->
+                </ul>
             </div>
         </div>
         <form class="row pt-2 pb-2" method="POST" action="">
