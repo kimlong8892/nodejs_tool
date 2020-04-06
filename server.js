@@ -8,7 +8,7 @@ app.use(express.static("./public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
 // use template
-app.set("view engine", "ejs");2
+app.set("view engine", "ejs");
 app.set("views", "./views");
 // set folder pulic
 app.use(express.static("./public"));

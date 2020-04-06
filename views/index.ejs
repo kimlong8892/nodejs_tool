@@ -8,40 +8,58 @@
 </head>
 <body>
     <%- include('include/header') -%>
-    <section class="container p-3">
+    <div class="container">
         <div class="row">
-            <div class="col-md-9 col-9" style="background: gainsboro; height: 400px; overflow: auto;" id="chatlog">
-                <!-- <div class="row p-1">
-                    <div class="col-md-1 col-2">
-                        <div class="text-center">
-                            <img class="card-img-top rounded-circle" width="100%" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" />
-                            <p class="small">KimLong</p>
+            <div class="col-md-12 mb-2 pt-4">
+                <div class="title bg-primary p-2" style="border-radius: 10px;">
+                    <h5>Category 1</h5>
+                </div>
+                <div class="body mt-2">
+                    <% for(i = 0; i < 5; ++i) { %>
+                        <div class="card p-1" style="border-radius: 10px;">
+                            <div class="row" style="display: flex; align-items: center;">
+                                <div class="col-md-1">
+                                    <img src="<%= baseURL %>/images/icon.png" width="100%">
+                                </div>
+                                <div class="col-md-3">
+                                    <h6>Thông báo <%= i %></h6>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="p-0 m-0">Chủ đề</p>
+                                            <p class="p-0 m-0"><%= i %></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="p-0 m-0">Trả lời</p>
+                                            <p class="p-0 m-0"><%= i %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row" style="display: flex; align-items: center;">
+                                        <div class="col-md-1 p-0 m-0">
+                                            <img src="<%= baseURL %>/images/icon.png" width="100%">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <p>Đánh giá iphone 11 xsmas pro vip</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span>NguyenKimLong</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span>22/11/2000</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-11 col-10 card p-3" style="border-radius: 10px;">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum veritatis voluptatibus culpa, magnam ea tenetur laborum. Dolores qui mollitia nobis porro doloribus nemo iure eligendi adipisci blanditiis? Culpa, nesciunt asperiores.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus, dolorum assumenda. Harum ipsum a atque fugiat pariatur repudiandae quam voluptates maxime optio alias. Cupiditate libero reprehenderit repellat voluptatum quaerat doloribus?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet id eum, molestiae pariatur commodi inventore. Enim architecto odit voluptas consectetur sequi porro explicabo odio, neque pariatur deserunt error optio ex.
-                        <p class="p-0 m-0 text-right"><small>11 mins ago</small></p>
-                    </div>
-                </div>        -->
-            </div>
-            <div class="col-md-3 col-3">
-                <h3 class="text-center">User Online</h3>
-                <ul class="list-group" style="height: 360px; overflow: auto;" id="list-user-online">
-                    <!-- <li class="list-group-item">Cras justo odio</li> -->
-                </ul>
+                    <% } %>
+                </div>
             </div>
         </div>
-        <form class="row pt-2 pb-2" method="POST" action="">
-            <div class="col-md-10 col-9 p-0">
-                <input type="text" placeholder="Nhập tin nhắn..." class="form-control name="txtMess" id="txtMess">
-            </div>
-            <div class="col-md-2 col-3 p-0">    
-                <button class="btn btn-primary w-100" name="btn-send" id="btn-send">Gửi</button>
-            </div>
-        </form>
-    </section>
+    </div>
     <%- include('include/footer') -%>
 </body>
 </html>

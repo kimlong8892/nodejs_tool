@@ -53,10 +53,17 @@ userController.showProfile = function(req, res){
         if(req.session.user)
             if(id == req.session.user.user_id)
                 my_profile = true;
-        res.render("profile", {user: data[0][0], my_profile: my_profile});
+        res.render("profile", {my_user: data[0][0], my_profile: my_profile});
     });
 };
 userController.avatarPost = function(req, res){
-    
+    const file = req.file
+    file.fieldname = "asdasdas.png";
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+    res.send(file);
 };
 module.exports = userController;

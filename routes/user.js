@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 // require controller
 var user_controller = require('../controller/user');
@@ -10,5 +11,5 @@ router.get('/login', user_controller.login);
 router.post('/login', user_controller.loginPost);
 router.get('/logout', user_controller.logout);
 router.get('/profile/:user_id', user_controller.showProfile);
-router.post('profile/upload-avatar', upload.single('avatar'), user_controller.avatarPost);
+router.post('/profile/upload-avatar', upload.single('user_avatar'), user_controller.avatarPost);
 module.exports = router;
