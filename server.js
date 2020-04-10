@@ -15,9 +15,9 @@ app.use(express.static("./public"));
 // set port
 server.listen(process.env.PORT || 4000);
 // body parser
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.locals.baseURL = "http://127.0.0.1:4000";
 // parse application/json
 app.use(bodyParser.json());
@@ -44,8 +44,6 @@ const homeRouter = require('./routes/index');
 app.use('/home', homeRouter);
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
-const chatlogRouter = require('./routes/chatlog');
-app.use('/chatlog', chatlogRouter);
 app.get('/', function(req, res){
     res.redirect('/home');
 });
@@ -55,24 +53,8 @@ app.get('/*', function(req, res){
 // socket io
 var user_online = [];
 io.on('connect', function(socket){
-  socket.on('client-send-mess', function(data){
-      io.sockets.emit('server-send-mess', {mess: data.mess, user: socket.handshake.session.user});  
-  });
-  if(socket.handshake.session.user != undefined){
-    let user = socket.handshake.session.user;
-    user.socket_id = socket.id;
-    user_online.push(user);
-    console.log(user_online);
-  }
-  io.sockets.emit('server-send-list-user-online', {list_user: user_online});
-  socket.on('disconnect', function(){
-    if(socket.handshake.session.user != undefined){
-      for(i = 0; i < user_online.length; ++i){
-        if(user_online[i].socket_id == socket.id){
-          user_online.splice(i, 1);
-        }
-      }
-    }
-    console.log("user disconnect !!!");
-  });
+    // code
+    socket.on('disconnect', function(){
+        // code
+    });
 });

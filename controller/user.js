@@ -12,12 +12,12 @@ userController.regPost = function(req, res){
     let userName = req.body.userName;
     let userEmail = req.body.userEmail;
     let userPass = md5(req.body.userPass);
-    userModel.checkNameAndEmail(userName, userEmail).then(function(data){
-        if(data[0].length == 0){
-            userModel.create(userName, userEmail, userPass);
-            res.render("reg", {success: `Đăng ký thành công [${userEmail}]`});
+    userReg = new userModel({user_name: userName, user_email: userEmail, user_pass: userPass});
+    userReg.save(function (err, userObj) {
+        if (err) {
+            res.render("reg", {error: err});
         } else {
-            res.render("reg", {error: `[${userName}] hoặc [${userEmail}] đã được sử dụng, vui lòng thử lại`});
+            res.render("reg", {success: `Đăng ký thành công [${userObj.user_name}]`});
         }
     });
 }
@@ -29,10 +29,12 @@ userController.login = function(req, res){
         res.redirect("/home");
 };
 userController.loginPost = function(req, res){
-    userModel.getByEmailAndPass(req.body.userEmail, md5(req.body.userPass)).then(function(data){
-        if(data[0].length != 0){
-            delete data[0][0]["user_pass"];
-            req.session.user = data[0][0];
+    let userEmail = req.body.userEmail;
+    let userPass = md5(req.body.userPass);
+    let objUserPromise = userModel.findOne({user_email: userEmail, user_pass: userPass}).exec();
+    objUserPromise.then(function(data){
+        if(data){
+            req.session.user = data;
             req.session.save();
             res.redirect("/home");
         } else {
@@ -47,18 +49,14 @@ userController.logout = function(req, res){
 }
 // profile
 userController.showProfile = function(req, res){
-    let id = req.params.user_id;
-    userModel.getById(id).then(function(data){
-        let my_profile = false;
-        if(req.session.user)
-            if(id == req.session.user.user_id)
-                my_profile = true;
-        res.render("profile", {my_user: data[0][0], my_profile: my_profile});
+    let userName = req.params.userName;
+    userModel.findOne({user_name: userName}).exec().then(function(data){
+        res.render('profile', {my_user: data, my_profile: false});
     });
 };
+
 userController.avatarPost = function(req, res){
     const file = req.file
-    file.fieldname = "asdasdas.png";
   if (!file) {
     const error = new Error('Please upload a file')
     error.httpStatusCode = 400

@@ -1,7 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
-const upload = multer({ dest: 'uploads/' });
+// SET STORAGE
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+   
+  var upload = multer({ storage: storage })
 // require controller
 var user_controller = require('../controller/user');
 // declare router
@@ -10,6 +20,7 @@ router.post('/reg', user_controller.regPost);
 router.get('/login', user_controller.login);
 router.post('/login', user_controller.loginPost);
 router.get('/logout', user_controller.logout);
-router.get('/profile/:user_id', user_controller.showProfile);
+router.get('/profile/:userName', user_controller.showProfile);
+
 router.post('/profile/upload-avatar', upload.single('user_avatar'), user_controller.avatarPost);
 module.exports = router;
