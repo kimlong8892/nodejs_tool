@@ -4,13 +4,28 @@
     <%- include('include/head') -%>
     <title>Trang chủ</title>
     <script src="<%= baseURL %>/js/index.js"></script>
+    <link rel="stylesheet" href="<%= baseURL %>/css/index.css">
 </head>
 <body>
     <%- include('include/header') -%>
-    <section class="container p-3">
+    <section class="container-fluid pr-3 pl-3">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Hello VN</h1>
+            <div class="col-md-10 p-2" style="word-break: break-all;">
+                <% for(i = 0; i < 1000; ++i) { %>
+                    5496084564586457634582374597345345549608456458645763458237459734534554960845645864576345823745973453455496084564586457634582374597345345
+                <% } %>
+            </div>
+            <div class="col-md-2" id="left-nav-online">
+                <% for(i = 0; i < 50; ++i) { %>
+                    <div class="user-online">
+                        <div class="name">
+                            <p>Kim Long</p>
+                        </div>
+                        <div class="is-online">
+                            <img src="<%= baseURL %>/images/is_online.png" width="100%">
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
     </section>

@@ -51,17 +51,30 @@ userController.logout = function(req, res){
 userController.showProfile = function(req, res){
     let userName = req.params.userName;
     userModel.findOne({user_name: userName}).exec().then(function(data){
-        res.render('profile', {my_user: data, my_profile: false});
+        if(data){
+            let my_profile = data._id == req.session.user._id ? true : false;
+            res.render('profile', {my_user: data, my_profile: my_profile});
+        } else {
+            res.redirect('/home');
+        }
     });
 };
 
-userController.avatarPost = function(req, res){
-    const file = req.file
-  if (!file) {
-    const error = new Error('Please upload a file')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-    res.send(file);
+// add friend
+userController.addFriend = function(req, res) {
+    let id_friend = req.body.id_friend;
+    userModel.findById(req.session.user._id).exec().then(function(data){
+        let ids = data.friend_ids;
+        ids.push(id_friend);
+        userModel.updateOne(
+            {
+                _id: req.session.user._id
+            },
+            {
+                $set: { "friend_ids" :  ids}
+            }
+        ).exec();
+    });
+
 };
 module.exports = userController;

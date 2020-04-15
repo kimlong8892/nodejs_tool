@@ -8,7 +8,12 @@ var User = mongoose.model('users',{
             type: String,
             unique: true
         }, 
-        user_pass: String
+        user_pass: {
+            type: String
+        },
+        friend_ids: {
+            type: Array
+        }
     }
 );
 module.exports = User;

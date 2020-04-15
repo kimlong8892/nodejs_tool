@@ -21,6 +21,5 @@ router.get('/login', user_controller.login);
 router.post('/login', user_controller.loginPost);
 router.get('/logout', user_controller.logout);
 router.get('/profile/:userName', user_controller.showProfile);
-
-router.post('/profile/upload-avatar', upload.single('user_avatar'), user_controller.avatarPost);
+router.post('/add-friend', user_controller.addFriend);
 module.exports = router;

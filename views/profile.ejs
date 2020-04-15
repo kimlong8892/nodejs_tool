@@ -10,18 +10,18 @@
         <div class="row">
             <div class="card col-md-12 text-center">
                 <img style="margin: 0 auto; width: 256px;" class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png">
-                <% if(my_profile) { %>
-                    <form action="<%= baseURL %>/user/profile/upload-avatar" method="post" enctype="multipart/form-data">
-                        <input type="file" name="user_avatar" id="user_avatar">
-                        <button>submit</button>
-                    </form>
-                <% } %>
                 <div class="card-body">
                     <h4 class="card-title"><%= my_user.user_name %></h4>
                     <p class="card-text">
                         <span class="text-primary">Email: </span><span><%= my_user.user_email %></span>
                     </p>
-                    <a href="#" class="btn btn-primary">See Profile</a>
+                    <% if(!my_profile) { %>
+                        <script src="<%= baseURL %>/js/add_friend.js"></script>
+                        <div>
+                            <input type="hidden" id="id_friend" value="<%= my_user._id %>">
+                            <button class="btn btn-primary" id="btn-add-friend">Add Friend</button>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>
