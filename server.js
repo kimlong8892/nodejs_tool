@@ -39,6 +39,8 @@ app.use(function(req, res, next) {
   res.locals.user = req.session.user;
   next();
 });
+
+/*
 // router
 const homeRouter = require('./routes/index');
 app.use('/home', homeRouter);
@@ -51,9 +53,51 @@ app.get('/*', function(req, res){
     res.render('404');
 });
 // socket io
+
+
+*/
 var user_online = [];
-io.on('connect', function(socket){
+io.on('connection', function(socket){
+   
     // code
+    socket.on('connect_server', (user_data) => {
+        let is_exists =  user_online.some(function(el) {
+          return el.id === user_data.id;
+        }); 
+
+        if (!is_exists) {
+            user_online.push(user_data);
+        }
+
+        io.emit('server_send_users_online', user_online);
+    });
+
+    socket.on('disconnect_server', (user_data) => {
+    
+      let is_exists =  user_online.some(function(el) {
+        return el.id === user_data.id;
+      });
+
+      if (is_exists) {
+          user_online.pop(user_data);
+      }
+
+      io.emit('server_send_users_online', user_online);
+    });
+
+
+    socket.on('user_chat_all', (data) => {
+      io.emit('server_send_chat_all', {user_data: data.user_data, mess: data.mess});
+    });
+
+
+
+
+
+
+
+
+
     socket.on('disconnect', function(){
         // code
     });
